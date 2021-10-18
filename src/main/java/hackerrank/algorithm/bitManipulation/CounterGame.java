@@ -27,6 +27,7 @@ public class CounterGame
         int count = 0;
         while(n > 0)
         {
+            // (n & (n - 1)) == 0 for 0 and all powers of 2.
             n &= (n - 1);
             count++;
         }
