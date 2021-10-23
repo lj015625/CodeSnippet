@@ -5,6 +5,7 @@ class Solution(object):
 
         searchStrings = []
         if (len(customerQuery) > 1):
+            # start with two char string
             for i in range(2, len(customerQuery)+1):
                 searchStrings.append(customerQuery[:i].lower())
         else:
