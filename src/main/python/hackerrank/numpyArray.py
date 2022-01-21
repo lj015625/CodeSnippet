@@ -25,6 +25,13 @@ nums = tuple(map(int, input().split()))
 print(np.zeros(nums, dtype = np.int64))
 print(np.ones(nums, dtype = np.int64))
 
-n, m  = map(int, input().split())
+n, m = map(int, input().split())
 print(np.identity(3)) #3 is for  dimension 3 X 3
 print(np.eye(n, m))
+
+n, m = map(int, input().split())
+a, b = (np.array(list(input().split() for _ in range(n)), dtype=int) for _ in range(2))
+print(a+b, a-b, a*b, a//b, a%b, a**b, sep='\n')
+
+a1 = np.array([list(input().split()) for _ in range(int(input().split()[0]))], dtype=int)
+print(*(f for f in [np.mean(a1, axis=1), np.var(a1, axis=0), round(np.std(a1, axis=None), 11)]), sep='\n')
