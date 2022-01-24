@@ -12,6 +12,15 @@ for _ in range(int(input())):
 m = re.search(r'([a-zA-Z0-9])\1+', input().strip())
 print(m.group(1) if m else -1)
 
+# replace '&&' and '||' with 'and' and 'or'
+N = int(input())
+for i in range(N):
+    # a look behind, and look forward with space
+    print(re.sub(r'(?<= )(&&|\|\|)(?= )', lambda x: 'and' if x.group() == '&&' else 'or', input()))
+    # remove comment
+    print(re.sub("(<!--.*?-->)", "", input()))
+
+
 # splitting numbers ex: 100,000,000.000
 print("\n".join(re.split(r"[.,]+", input())))
 
@@ -53,10 +62,3 @@ unit     = "(?:(V?(I){0,3})|(IX)|(IV))?"
 regex_pattern = r"^" + thousand + hundred + ten + unit + "$"
 print(str(bool(re.match(regex_pattern, input()))))
 
-# replace '&&' and '||' with 'and' and 'or'
-N = int(input())
-for i in range(N):
-    # a look behind, and look forward with space
-    print(re.sub(r'(?<= )(&&|\|\|)(?= )', lambda x: 'and' if x.group() == '&&' else 'or', input()))
-    # remove comment
-    print(re.sub("(<!--.*?-->)", "", input()))
