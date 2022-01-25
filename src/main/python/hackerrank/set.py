@@ -1,0 +1,8 @@
+m = int(input())
+arr = list(map(int, input().split()))
+myset = set(arr)
+n = int(input())
+arr1 = list(map(int, input().split()))
+myset2 = set(arr1)
+result = sorted(myset.difference(myset2).union(myset2.difference(myset)))
+print('\n'.join(str(v) for v in result))
