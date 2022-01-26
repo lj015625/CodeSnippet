@@ -29,3 +29,15 @@ for c in it.combinations_with_replacement(sorted(s), int(n)):
 
 # create list of tuples from repeating items in a string
 print(*[(len(list(values)), int(key)) for key, values in it.groupby(input())])
+
+
+# count number of a in combinations
+n = 4
+arr = ['a', 'a', 'c', 'd']
+k = 2
+count = 0
+total = 0
+for t in it.combinations(arr, k):
+    total += 1
+    count += 'a' in t
+print(count/total)
