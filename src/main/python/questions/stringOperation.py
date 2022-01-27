@@ -38,13 +38,13 @@ class StringController:
 
     name = 'String Controller'
 
-    def __init__(self, opsStr):
+    def __init__(self, string):
         """public constructor
            Parameters:
-           operations (str): the string of operations
+           string (str): the string of operations
         """
         import re
-        self.operations = list(filter(None, re.split(r'([FBR][\d+\w])', opsStr)))
+        self.operations = list(filter(None, re.split(r'([FBR][\d+\w])', string)))
 
 
     def get_operations(self):
