@@ -1,10 +1,10 @@
 
-def person_lister(f):
+def person_lister(func):
     """sort persons by age"""
     def inner(persons):
         # for ps in sorted(persons, key=lambda x: int(x[2])):
         #     yield f(ps)
-        return map(f, sorted(persons, key=lambda x: x[2]))
+        return map(func, sorted(persons, key=lambda x: x[2]))
     return inner
 
 @person_lister
@@ -18,12 +18,12 @@ if __name__ == '__main__':
 
 
 
-def wrapper(f):
+def wrapper(sortFunc):
     """format phone number to add +91"""
     def fun(l):
         # from right to left las 5 digits, last 5 to last 10 digits, then add +91 to the left
         for c in l:
-            f(["+91 "+c[-10:-5]+" "+c[-5:]])
+            sortFunc(["+91 "+c[-10:-5]+" "+c[-5:]])
         return l
 
     return fun
