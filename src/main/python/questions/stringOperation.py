@@ -38,18 +38,24 @@ class StringController:
 
     name = 'String Controller'
 
-    def __init__(self, operations):
-        self.operations = operations
-
-    def split(self):
+    def __init__(self, opsStr):
+        """public constructor
+           Parameters:
+           operations (str): the string of operations
+        """
         import re
-        return list(filter(None, re.split(r'([FBR][\d+\w])', self.operations)))
+        self.operations = list(filter(None, re.split(r'([FBR][\d+\w])', opsStr)))
+
+
+    def get_operations(self):
+        """getter instance method
+           Returns (operations) a list of operations"""
+        return self.operations
 
 
 c = StringController('F2B1F5Rw')
-
 s = MyString('abcdefghijklmn')
-for o in c.split():
+for o in c.get_operations():
     if o[0] == 'F':
         s.forward(int(o[1]))
     elif o[0] == 'B':
