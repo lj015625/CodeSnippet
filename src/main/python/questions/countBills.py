@@ -4,7 +4,7 @@ def countways_(bills, amount, index):
         return 1
     if amount < 0 or index >= len(bills):  # base case 2
         return 0
-    # count the number of ways to make amount by use first bill and any combo of the rest of bills
+    # count the amount with current bill, and amount without current bill
     return countways_(bills, amount - bills[index], index) + countways_(bills, amount, index + 1)
 
 
@@ -26,14 +26,14 @@ def countways_dp(bills, amount):
         for j in range(len(bills)):
             bill = bills[j]
             # can add this bill j
-            if amt >= bill:
+            if amt - bill >= 0:
                 # existing count for j and (amt - bill) is dp[amt - bill][j]
                 x = dp[amt - bill][j]
             else:
                 x = 0
             # cannot add this bill j
             if j >= 1:
-                # existing count for previous j-1 and amt is dp[amt - bill][j]
+                # existing count for previous j-1 and amt is dp[amt][j-1]
                 y = dp[amt][j - 1]
             else:
                 y = 0
