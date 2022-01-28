@@ -13,3 +13,10 @@ for i in range(numCust):
         inventory[size] -= 1
 
 print(income)
+
+# get top 3 most frequent letter
+s = 'aabbbccde'
+myMap = collections.Counter(sorted(list(s)))
+print(" ".join((t[0], t[1]) for t in myMap.most_common(3)), sep='\n')
+# for x in myMap.most_common(3):
+#     print(x[0], x[1])
