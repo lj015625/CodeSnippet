@@ -16,7 +16,7 @@ def weekly_aggregation(ts):
     starting_date = ts[0]
     weekly = defaultdict(list)
     for date in ts:
-        weekly[weeks_from_date(starting_date, date) % 7 ].append(date)
+        weekly[weeks_from_date(starting_date, date) % 7].append(date)
     return list(weekly.values())
 
 
