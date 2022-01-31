@@ -2,10 +2,10 @@
 is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
 The board is made up of an m x n grid of cells, where each cell has an initial state: live (represented by a 1) or dead (represented by a 0).
 Each cell interacts with its eight neighbors (horizontal, vertical, diagonal) using the following four rules (taken from the above Wikipedia article):
-Any live cell with fewer than two live neighbors dies as if caused by under-population.
-Any live cell with two or three live neighbors lives on to the next generation.
-Any live cell with more than three live neighbors dies, as if by over-population.
-Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
+1) Any live cell with fewer than two live neighbors dies as if caused by under-population.
+2) Any live cell with two or three live neighbors lives on to the next generation.
+3) Any live cell with more than three live neighbors dies, as if by over-population.
+4) Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously.
 Given the current state of the m x n grid board, return the next state."""
 
@@ -62,19 +62,19 @@ def gameOfLife2(board):
         for j in range(n):
             total = 0
             for x, y in directions:  # check and count neighbors in all directions
-                # 2 is previous live
+                # 1 is live, 2 is previous live
                 if (m > i + x >= 0) and (n > j + y >= 0) and (board[i + x][j + y] == 1 or board[i + x][j + y] == 2):
                     total += 1
 
             # apply Conway's rules
-            if board[i][j] == 1 and (total < 2 or total > 3):  # live -> died
+            if board[i][j] == 1 and (total < 2 or total > 3):  # current live -> next died
                 board[i][j] = 2
-            elif board[i][j] == 0 and total == 3:  # died -> live
+            elif board[i][j] == 0 and total == 3:  # current died -> next live
                 board[i][j] = 3
-
+    # reset board to 1s and 0s
     for i in range(len(board)):
         for j in range(len(board[0])):
-            # live, or died to live
+            # live, or next live
             if board[i][j] in (1, 3):
                 board[i][j] = 1
             else:
