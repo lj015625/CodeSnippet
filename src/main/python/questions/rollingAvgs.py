@@ -14,10 +14,8 @@ def read_date(date):
     return datetime.strptime(date, "%Y-%m-%d")
 
 def rolling_sum(arr):
-    window_beg_date = None
-    window_end_date = None
     window = []
-    moving_averages = []
+    moving_avgs = []
     cum_sum = []
     for i, t in enumerate(arr):
         date = read_date(t[0])
@@ -26,7 +24,7 @@ def rolling_sum(arr):
             window_beg_date, window_end_date = get_window_dates(date)
         # trigger moving avg calculation and reset
         if date >= window_end_date:
-            moving_averages.append(round(sum(window) / len(window), 2))
+            moving_avgs.append(round(sum(window) / len(window), 2))
             prev_sum = cum_sum[-1] if len(cum_sum) > 0 else 0
             cum_sum.append(prev_sum + sum(window))
             window = []
@@ -35,9 +33,9 @@ def rolling_sum(arr):
 
         window.append(value)
     # need to calculate one last time
-    moving_averages.append(round(sum(window) / len(window), 2))
+    moving_avgs.append(round(sum(window) / len(window), 2))
     cum_sum.append(cum_sum[-1] + sum(window))
-    return moving_averages, cum_sum
+    return moving_avgs, cum_sum
 
 
 arr = [('2022-01-01', 10),
