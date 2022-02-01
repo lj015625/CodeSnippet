@@ -1,3 +1,7 @@
+"""Given two strings, string1 and string2, write a function str_map to determine
+if there exists a one-to-one correspondence (bijection) between the characters of string1 and string2.
+For the two strings, our correspondence must be between characters in the same position/index.
+"""
 def string_map(string1, string2):
     # check whether the strings are the same length
     if len(string1) != len(string2):
