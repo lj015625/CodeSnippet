@@ -1,7 +1,7 @@
 import random
 class Solution(object):
 
-    def uniforrn_random(self, lower_bound, upper_bound):
+    def uniform_random(self, lower_bound, upper_bound):
 
         random_number = upper_bound - lower_bound + 1
         while True:
@@ -18,4 +18,4 @@ class Solution(object):
         return result + lower_bound
 
 solution = Solution()
-print(solution.uniforrn_random(1, 10))
+print(solution.uniform_random(1, 10))
