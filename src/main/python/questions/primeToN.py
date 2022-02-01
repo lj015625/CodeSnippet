@@ -2,8 +2,8 @@
 """
 
 def prime_numbers(N):
-
-    for num in range(2, N + 1):
+    primes = []
+    for num in range(2, N):
         # all prime numbers are greater than 1
         # for i in range(2, num):
         #     if (num % i) == 0:
@@ -11,7 +11,7 @@ def prime_numbers(N):
         # else:
         #     print(num)
         if all(num % i != 0 for i in range(2, num)):
-            print(num)
+            primes.append(num)
+    return primes
 
-
-prime_numbers(100)
+print(prime_numbers(5))
