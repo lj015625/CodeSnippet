@@ -8,6 +8,14 @@ print(np.reshape(my_array,(3,2)))
 #[3 4]
 #[5 6]]
 
+# find percentage of each value within each subarray
+data = np.array([[10, 20, 30, 30, 10], [15, 15, 5, 10, 5], [150, 50, 100, 150, 50], [300, 200, 300, 100, 100], [1, 5, 1, 1, 2]])
+data = data / data.sum(axis=1)
+# change row to col array
+print(data.reshape(-1, 1))
+# Output
+# [[0.1, 0.2, 0.3, 0.3, 0.1], [0.3, 0.3, 0.1, 0.2, 0.1], [0.3, 0.1, 0.2, 0.3, 0.1], [0.3, 0.2, 0.3, 0.1, 0.1], [0.1, 0.5, 0.1, 0.1, 0.2]]
+
 # transpose and flatten
 my_array = np.array([[1,2,3],
                         [4,5,6]])
