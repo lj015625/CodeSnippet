@@ -1,34 +1,37 @@
 import itertools as it
 
-def cartesian_product(arr1, arr2):
-    print(*it.cartesian_product(A, B))
+def combinational_dice_rolls(n, m):
+    return list(it.product(range(1, m+1), repeat=n))
+combinational_dice_rolls(2,2)
 
-A = [int(x) for x in input().split()]
-B = [int(y) for y in input().split()]
+def cartesian_product(arr1, arr2):
+    print(*it.product(A, B))
+A = [1,2,3]
+B = [1,2,3]
 cartesian_product(A,B)
 
 
-s,n = input().split()
+s, n = 2, 3
 s = sorted(str(s))
 n = int(n)
 for i in it.permutations(s,n):
-    print(''.join(i),sep='\n')
+    print(''.join(i), sep='\n')
 
 
-s,n = input().split()
+s, n = 'ABC', 2
 for i in range(1, int(n)+1):
     for j in it.combinations(sorted(s), i):
         print(''.join(j))
 
 
 # This tool returns  length subsequences of elements from the input iterable allowing individual elements to be repeated more than once.
-s, n = input().split()
+s, n = 'ABC', 2
 for c in it.combinations_with_replacement(sorted(s), int(n)):
     print("".join(c))
 
 
 # create list of tuples from repeating items in a string
-print(*[(len(list(values)), int(key)) for key, values in it.groupby(input())])
+print(*[(len(list(values)), int(key)) for key, values in it.groupby('12345')])
 
 
 # count number of a in combinations
