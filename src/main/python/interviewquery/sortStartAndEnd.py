@@ -21,9 +21,10 @@ def plan_trip(flights):
 
     sortedFlights = []
     while len(myMap) > 0:
-        end = my
-        Map.pop(beg)
+        end = myMap[beg]
+        myMap.pop(beg)
         sortedFlights.append([beg, end])
+        #swap begin and end
         beg = end
 
     return sortedFlights
