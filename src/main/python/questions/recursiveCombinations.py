@@ -12,23 +12,38 @@ If no such condition satisfied just return empty list."""
 
 def book_combinations(book_list, N):
     result_list = []
-    min_weight = sum([book[0] for book in book_list])
+
+    total = []
+    for price, weight in book_list:
+        total.append(weight)
+    min_weight = sum(total)
+    # print(min_weight)
 
     def recursive_traverse(index, remaining_credit, total_weight, choosen_books):
         nonlocal result_list, min_weight
+        # Found the final results
         if remaining_credit == 0 and len(choosen_books) > 1 and total_weight < min_weight:
             result_list = choosen_books
             min_weight = total_weight
+        # incorrect result
         if index >= len(book_list) or remaining_credit < 0 or total_weight > min_weight:
             return
+        # continuous search for next book
+        # add new book_list[index]
+        recursive_traverse(index+1, remaining_credit - book_list[index][0],
+                           total_weight + book_list[index][1], choosen_books+[book_list[index]])
+        # current book
         recursive_traverse(index+1, remaining_credit,
                            total_weight, choosen_books)
-        recursive_traverse(index+1, remaining_credit -
-                           book_list[index][0], total_weight+book_list[index][1], choosen_books+[book_list[index]])
 
+
+
+    # call inner function first time
     recursive_traverse(0, N, 0, [])
     return result_list
 
+
+
 N = 18
 books = [(17,8), (9,4), (18,5), (11,9), (1,2), (13,7), (7,5), (3,6), (10,8)]
-print(book_combinations(N, books))
+print(book_combinations(books, N))
