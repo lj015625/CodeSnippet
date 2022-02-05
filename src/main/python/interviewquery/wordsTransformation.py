@@ -16,16 +16,22 @@ def shortest_transformation(beginWord, endWord, wordList):
     if beginWord in wordList:
         wordList.remove(beginWord)
 
+    # queue of word and level
     queue = collections.deque([(beginWord, 1)])
     while queue:
-        cur, level = queue.popleft()
-        for i in range(len(cur)):
+        word, level = queue.popleft()
+        # two for loops replace each character with any of the alphabets
+        for i in range(len(word)):
             for c in 'qwertyuiopasdfghjklzxcvbnm':
-                trans = cur[:i] + c + cur[i + 1:]
-                if trans in wordList:
-                    queue.append((trans, level + 1))
-                    wordList.remove(trans)
-                    if trans == endWord:
+                # replace a character
+                changeOneChar = word[:i] + c + word[i + 1:]
+                # found a match
+                if changeOneChar in wordList:
+                    # add match to the queue
+                    queue.append((changeOneChar, level + 1))
+                    # remove found word. cannot repeat the same word
+                    wordList.remove(changeOneChar)
+                    if changeOneChar == endWord:
                         return level + 1
     return 0
 
