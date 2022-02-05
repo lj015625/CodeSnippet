@@ -39,7 +39,7 @@ def rearranging_digits(n):
                 return None
             else:
                 # if the remaining digits is sorted in Descending order
-                # we swap the least digit with the smallets digit larger than that digit.
+                # we swap the least digit with the smallest digit larger than that digit.
                 have_digits[-1], moved_digit = just_bigger(have_digits[-1],
                                                            remaining_digits), have_digits[-1]
                 remaining_digits.remove(have_digits[-1])
@@ -51,4 +51,4 @@ def rearranging_digits(n):
 
 
 n = '395'
-assert (rearranging_digits(n), '539')
+assert(rearranging_digits(n) == '539')
