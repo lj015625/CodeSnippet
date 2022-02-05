@@ -12,7 +12,11 @@ import numpy as np
 
 def get_threshold(spends, margin=0.1):
     median = np.median(spends)
-    percentile_n = (800 - median * margin) / 700
+    total_profit = median * margin
+    # 800*(1-percentile) + 100*percentile = Total
+    # 800 - 700*percentile = total
+    # percentile = (800 - total_profit) / 700
+    percentile_n = (800 - total_profit) / 700
 
     if percentile_n > 1:
         percentile_n = 1
