@@ -1,5 +1,5 @@
 """
-
+Generate Gaussian dist.
 """
 
 from scipy.stats import norm
