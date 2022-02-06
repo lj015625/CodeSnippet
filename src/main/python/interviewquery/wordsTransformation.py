@@ -16,7 +16,7 @@ def shortest_transformation(beginWord, endWord, wordList):
     if beginWord in wordList:
         wordList.remove(beginWord)
 
-    # queue of word and level
+    # queue of tuple of (word, level)
     queue = collections.deque([(beginWord, 1)])
     while queue:
         word, level = queue.popleft()
