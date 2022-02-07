@@ -62,3 +62,22 @@ unit     = "(?:(V?(I){0,3})|(IX)|(IV))?"
 regex_pattern = r"^" + thousand + hundred + ten + unit + "$"
 print(str(bool(re.match(regex_pattern, input()))))
 
+# UID
+for _ in range(int(input())):
+    u = ''.join(sorted(input()))
+    try:
+        # It must contain at least  uppercase English alphabet characters.
+        assert re.search(r'[A-Z]{2}', u)
+        #I t must contain at least  digits (0-9).
+        assert re.search(r'\d\d\d', u)
+        # It should only contain alphanumeric characters ( - ,  -  &  - ).
+        assert not re.search(r'[^a-zA-Z0-9]', u)
+        # No character should repeat.
+        assert not re.search(r'(.)\1', u)
+        # There must be exactly  characters in a valid UID.
+        assert len(u) == 10
+    except:
+        print('Invalid')
+    else:
+        print('Valid')
+
