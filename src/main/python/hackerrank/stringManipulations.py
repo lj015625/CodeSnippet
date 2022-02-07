@@ -2,22 +2,22 @@ def count_substring(string, sub_string):
     subStringSize = len(sub_string)
     count = 0
     for i in range(len(string)):
-        if sub_string == string[i:i+subStringSize]:
-            count+=1
+        if sub_string == string[i:i + subStringSize]:
+            count += 1
     return count
 
 
 def mutate_string(string, position, character):
-    return string[:position] + character + string[position+1:]
+    return string[:position] + character + string[position + 1:]
 
 
 def swap_case(s):
     s1 = ''
     for c in s:
         if c.islower():
-            s1 = s1+ c.upper()
+            s1 = s1 + c.upper()
         else:
-            s1 = s1+ c.lower()
+            s1 = s1 + c.lower()
 
     return s1
 
@@ -35,21 +35,23 @@ def string_type(s):
 
 
 import math
+
+
 def wrap(string, max_width):
     result = []
-    for i in range(0, int(math.ceil(len(string)/max_width))):
-        #print(i*max_width, i*max_width+max_width)
-        result.append(string[i*max_width:i*max_width+max_width])
+    for i in range(0, int(math.ceil(len(string) / max_width))):
+        # print(i*max_width, i*max_width+max_width)
+        result.append(string[i * max_width:i * max_width + max_width])
     return '\n'.join(result)
 
 
 def solve(s):
-    #return ' '.join(map(str.capitalize, s.split(' ')))
+    # return ' '.join(map(str.capitalize, s.split(' ')))
     s = list(s.split(' '))
-    p=[]
+    p = []
     for i in s:
         if i.isalpha():
-            p.append(i[0].upper()+i[1:])
+            p.append(i[0].upper() + i[1:])
         else:
             p.append(i)
     return " ".join(p)
@@ -69,7 +71,10 @@ def print_formatted(number):
         formatBin = ((" " * (spacePad - len(str(binVar)) - 2)) + binVar)
         print(formatFloat + " " + formatOct + " " + formatHex + " " + formatBin)
 
+
 import string
+
+
 def print_rangoli(n):
     alpha = string.ascii_lowercase
 
@@ -77,8 +82,7 @@ def print_rangoli(n):
     for i in range(n):
         s = "-".join(alpha[i:n])
         # each row contains 17 characters.  n = 5, row = 4 * 5 - 3 = 17
-        myList.append((s[::-1]+s[1:]).center(4*n-3, "-"))
+        myList.append((s[::-1] + s[1:]).center(4 * n - 3, "-"))
 
     print('\n'.join(myList[::-1]))
     print('\n'.join(myList[1:]))
-
