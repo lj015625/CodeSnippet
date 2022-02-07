@@ -9,7 +9,7 @@ def is_vowel(letter):
 
 def score_words(words):
     score = 0
-    for word in words:
+    for word in words.split():
         num_vowels = 0
         for letter in word:
             if is_vowel(letter):
@@ -21,5 +21,4 @@ def score_words(words):
     return score
 
 
-words = "programming is awesome"
-print(score_words(words))
+print(score_words("programming is awesome"))
