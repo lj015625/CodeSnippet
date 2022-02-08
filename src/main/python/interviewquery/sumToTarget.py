@@ -27,7 +27,7 @@ def twoNumberSum(array, targetSum):
             return [current_num, complement]
         else:
             # use dict as a hashset not a hashmap
-            saved[current_num] = True
+            saved[current_num] = complement
     return []
 
 array = [3,5,-4,8,11,1,-1,6]

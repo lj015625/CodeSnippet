@@ -1,3 +1,15 @@
+def threeNumberSumBruteforce(array, targetSum):
+    results = []
+    for i in range(0, len(array)-2):
+        for j in range(i + 1, len(array)-1):
+            for k in range(j + 1, len(array)):
+                if array[i] + array[j] + array[k] == targetSum:
+                    results.append([array[i], array[j], array[k]])
+    return results
+
+print(threeNumberSumBruteforce([12, 3, 1, 2, -6, 5, -8, 6], 0))
+
+
 def threeNumberSum(array, targetSum):
     results = []
     array.sort()
@@ -17,3 +29,5 @@ def threeNumberSum(array, targetSum):
     return results
 
 print(threeNumberSum([12, 3, 1, 2, -6, 5, -8, 6], 0))
+
+
