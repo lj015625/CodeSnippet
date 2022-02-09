@@ -34,10 +34,11 @@ def mergeSort(myList):
             k += 1
 
         while j < len(right):
-            myList[k]=right[j]
+            myList[k] = right[j]
             j += 1
             k += 1
 
-myList = [54,26,93,17,77,31,44,55,20]
+
+myList = [54, 26, 93, 17, 77, 31, 44, 55, 20]
 mergeSort(myList)
 print(myList)
