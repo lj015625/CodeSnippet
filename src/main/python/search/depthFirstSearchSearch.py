@@ -1,21 +1,30 @@
-# Using a Python dictionary to act as an adjacency list
-graph = {
-    'A' : ['B','C'],
-    'B' : ['D', 'E'],
-    'C' : ['F'],
-    'D' : [],
-    'E' : ['F'],
-    'F' : []
-}
+class Node:
+    def __init__(self, name):
+        self.children = []
+        self.name = name
 
-visited = set() # Set to keep track of visited nodes.
+    def addChild(self, name):
+        self.children.append(Node(name))
+        return self
 
-def dfs(visited, graph, node):
-    if node not in visited:
-        print (node)
-        visited.add(node)
-        for neighbour in graph[node]:
-            dfs(visited, graph, neighbour)
+    def depthFirstSearch(self, array):
+        array.append(self.name)
+        for child in self.children:
+            child.depthFirstSearch(array)
+        return array
 
-# Driver Code
-dfs(visited, graph, 'A')
+
+
+
+import unittest
+
+
+class TestProgram(unittest.TestCase):
+    def test_case_1(self):
+        graph = Node("A")
+        graph.addChild("B").addChild("C").addChild("D")
+        graph.children[0].addChild("E").addChild("F")
+        graph.children[2].addChild("G").addChild("H")
+        graph.children[0].children[1].addChild("I").addChild("J")
+        graph.children[2].children[0].addChild("K")
+        self.assertEqual(["A", "B", "E", "F", "I", "J", "C", "D", "G", "K", "H"], graph.depthFirstSearch([]))
