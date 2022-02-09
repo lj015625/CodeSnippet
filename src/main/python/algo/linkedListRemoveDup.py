@@ -4,20 +4,19 @@ class LinkedList:
         self.value = value
         self.next = None
 
-# Hint linked List is sorted
+# Hint linked List is sorted O(n) time O(1) space
 def removeDuplicatesFromLinkedList(linkedList):
-
     currentNode = linkedList
     while currentNode is not None:
-        nextNode = currentNode.next
         # skip all duplicates
-        while nextNode is not None and nextNode.value == currentNode.value:
-            nextNode = nextNode.next
+        temp = currentNode.next
+        while temp is not None and temp.value == currentNode.value:
+            temp = temp.next
         # set pointer to new nextNode
-        currentNode.next = nextNode
+        currentNode.next = temp
 
         # iterate to next
-        currentNode = nextNode
+        currentNode = temp
 
     return linkedList
 
