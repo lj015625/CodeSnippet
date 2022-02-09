@@ -7,6 +7,7 @@ class Node:
         self.children.append(Node(name))
         return self
 
+    # use array as stack O(vertices+edges) time O(vertices) space
     def depthFirstSearch(self, array):
         array.append(self.name)
         for child in self.children:

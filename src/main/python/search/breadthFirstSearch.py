@@ -1,27 +1,32 @@
-graph = {
-    'A' : ['B','C'],
-    'B' : ['D', 'E'],
-    'C' : ['F'],
-    'D' : [],
-    'E' : ['F'],
-    'F' : []
-}
+class Node:
+    def __init__(self, name):
+        self.children = []
+        self.name = name
 
-visited = [] # List to keep track of visited nodes.
-queue = []     #Initialize a queue
+    def addChild(self, name):
+        self.children.append(Node(name))
+        return self
 
-def bfs(visited, graph, node):
-    visited.append(node)
-    queue.append(node)
+    # O(vertices+edges) time O(vertices) space
+    def breadthFirstSearch(self, array):
+        queue = [self]
+        while queue:
+            current = queue.pop(0)
+            # use array to keep traversal record
+            array.append(current.name)
+            for child in current.children:
+                # FIFO queue to track siblings
+                queue.append(child)
+        return array
 
-    while queue:
-        s = queue.pop(0)
-        print (s, end = " ")
+import unittest
 
-        for neighbour in graph[s]:
-            if neighbour not in visited:
-                visited.append(neighbour)
-                queue.append(neighbour)
-
-# Driver Code
-bfs(visited, graph, 'A')
+class TestProgram(unittest.TestCase):
+    def test_case_1(self):
+        graph = Node("A")
+        graph.addChild("B").addChild("C").addChild("D")
+        graph.children[0].addChild("E").addChild("F")
+        graph.children[2].addChild("G").addChild("H")
+        graph.children[0].children[1].addChild("I").addChild("J")
+        graph.children[2].children[0].addChild("K")
+        self.assertEqual(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"], graph.breadthFirstSearch([]))
