@@ -11,7 +11,7 @@ def findClosestValueInBst(tree, target):
     currentNode = tree
     closest = currentNode.value
     while currentNode is not None:
-        # if current value is closer then
+        # if current value is closer then with new closest value
         if abs(target - currentNode.value) < abs(target - closest):
             closest = currentNode.value
         # move to left child node
