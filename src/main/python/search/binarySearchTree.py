@@ -5,7 +5,7 @@ class BST:
         self.left = None
         self.right = None
 
-# avg O(logn) time O(1) space
+# avg O(log(n)) time O(1) space
 # worst O(n) time O(1) space
 def findClosestValueInBst(tree, target):
     currentNode = tree
