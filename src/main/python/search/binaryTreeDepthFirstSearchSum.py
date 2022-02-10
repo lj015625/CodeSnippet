@@ -14,6 +14,7 @@ def depthFirstSearch(node, branchSum, array):
     if node.right is not None:
         depthFirstSearch(node.right, branchSum, array)
 
+# O(n) time O(n) space where n is number of node
 def branchSums(root):
     currentNode = root
     array = []
