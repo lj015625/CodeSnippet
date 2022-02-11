@@ -1,14 +1,32 @@
 """Calculate the sum of binary tree node depth."""
 
-def depthFirstSearch(node, depth=0):
+
+def depthFirst(node, depth=0):
     if node is None:
         return 0
-    return depth + depthFirstSearch(node.left, depth + 1) + depthFirstSearch(node.right, depth + 1)
+    return depth + depthFirst(node.left, depth + 1) + depthFirst(node.right, depth + 1)
+
 
 # O(n) time O(h).  n = number of node.  h = height of binary tree
 def nodeDepths(root):
-    depth = depthFirstSearch(root, 0)
+    depth = depthFirst(root, 0)
     return depth
+
+
+# O(n) time O(h).  n = number of node.  h = height of binary tree
+def nodeDepthsBreadthFirst(root):
+    sumOfDepth = 0
+    stack = [{"node": root, "depth": 0}]
+    while len(stack) > 0:
+        nodeInfo = stack.pop()
+        node, depth = nodeInfo["node"], nodeInfo["depth"]
+        if node is None:
+            continue
+        # breadth first add parent
+        sumOfDepth += depth
+        stack.append({"node": node.left, "depth": depth + 1})
+        stack.append({"node": node.right, "depth": depth + 1})
+    return sumOfDepth
 
 
 # This is the class of the input binary tree.
@@ -34,4 +52,6 @@ class TestProgram(unittest.TestCase):
         root.right.left = BinaryTree(6)
         root.right.right = BinaryTree(7)
         actual = nodeDepths(root)
+        self.assertEqual(16, actual)
+        actual = nodeDepthsBreadthFirst(root)
         self.assertEqual(16, actual)

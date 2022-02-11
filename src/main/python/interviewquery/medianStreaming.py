@@ -4,11 +4,13 @@ Write a function get_stream_median to calculate the median from a stream of inte
 from heapq import *
 class MedianFinder:
     def __init__(self):
-        self.maxh = []  # max heap for smaller half
-        self.minh = []  # min heap for larger half
+        self.maxh = []  # max heap for smaller half where top item is largest
+        self.minh = []  # min heap for larger half where top item is smallest
 
     def addNum(self, num):
         # if max-heap is empty or top element > given number
+        # as Python heap default is min heap
+        # so pass in negative value to make it as top
         if not self.maxh or (-1 * self.maxh[0] > num):
             # push number to max-heap (reverse sign)
             heappush(self.maxh, -1 * num)
