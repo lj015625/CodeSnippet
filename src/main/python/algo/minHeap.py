@@ -17,9 +17,10 @@ class MinHeap:
         # in an array left child index = current index * 2 + 1
         # right child index = current index * 2 + 2
         childOneIdx = currentIdx * 2 + 1
+        # if child is not leaf
         while childOneIdx <= endIdx:
             childTwoIdx = currentIdx * 2 + 2 if currentIdx * 2 + 2 <= endIdx else -1
-            # swap if one child if child is smaller than parent
+            # swap smaller child with parent
             if childTwoIdx != -1 and heap[childTwoIdx] < heap[childOneIdx]:
                 idxToSwap = childTwoIdx
             else:
@@ -35,12 +36,15 @@ class MinHeap:
     def siftUp(self, currentIdx, heap):
         # in an array parent index = Math.floor((child index - 1) / 2)
         parentIdx = (currentIdx - 1) // 2
+        # continue loop on currentIdx until root
         while currentIdx > 0:
             if heap[currentIdx] < heap[parentIdx]:
                 self.__swap(currentIdx, parentIdx, heap)
+                # swap parent and child index
                 currentIdx = parentIdx
                 parentIdx = (currentIdx - 1) // 2
             else:
+                # break loop
                 return
 
     def peek(self):
