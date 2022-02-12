@@ -61,6 +61,8 @@ class Heap:
         return array
 
     def siftDown(self, currentIdx, endIdx, heap):
+        # in an array left child index = current index * 2 + 1
+        # right child index = current index * 2 + 2
         childOneIdx = currentIdx * 2 + 1
         while childOneIdx <= endIdx:
             childTwoIdx = currentIdx * 2 + 2 if currentIdx * 2 + 2 <= endIdx else -1
@@ -79,6 +81,7 @@ class Heap:
                 return
 
     def siftUp(self, currentIdx, heap):
+        # in an array parent index = Math.floor((child index - 1) / 2)
         parentIdx = (currentIdx - 1) // 2
         while currentIdx > 0:
             if self.comparisonFunc(heap[currentIdx], heap[parentIdx]):
