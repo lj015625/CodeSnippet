@@ -17,7 +17,7 @@ def runLengthEncoding(string):
             count = 0
 
         count += 1
-
+    # the last iteration prev is not set in loop if string has only 1 char
     encoded.append(str(count) + string[-1])
     return ''.join(encoded)
 
