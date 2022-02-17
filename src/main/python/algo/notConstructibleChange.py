@@ -19,7 +19,7 @@ def nonConstructibleChange(coins):
     return max(changes) + 1
 
 
-# Olog(n) time | O(1) space
+# O(log(n)) time | O(1) space
 def nonConstructibleChange2(coins):
     coins.sort()
     # start with 0 and increasing
