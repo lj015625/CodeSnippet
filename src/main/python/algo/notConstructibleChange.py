@@ -22,6 +22,7 @@ def nonConstructibleChange(coins):
 # Olog(n) time | O(1) space
 def nonConstructibleChange2(coins):
     coins.sort()
+    # start with 0 and increasing
     maxChange = 0
     for coin in coins:
         # we cannot make maxChange + 1 because coin is bigger than maxChange + 1
