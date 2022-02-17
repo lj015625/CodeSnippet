@@ -34,7 +34,7 @@ def string_type(s):
     print(any([True for sub in s if sub.isupper()]))
 
 
-import math
+from src.main.python.math import math
 
 
 def wrap(string, max_width):
