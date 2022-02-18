@@ -5,7 +5,7 @@ All students in blue shirts must be in the same row.
 Each student in back row must be taller than the student directly in front.
 """
 
-
+# O(log(n)) time O(1) space
 def classPhotos(redShirtHeights, blueShirtHeights):
     if len(redShirtHeights) != len(blueShirtHeights):
         return False
