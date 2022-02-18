@@ -1,5 +1,5 @@
 """
-
+Take a special array and return sum.  For each inner array multiple sum by its depth.
 """
 
 
