@@ -4,15 +4,15 @@ Return the smallest array of characters needed to form words.  Includes punctuat
 
 from collections import Counter, defaultdict
 
-
+# O(n * l) time and O(c) space.
+# n is number of words, l is length of the longest word, c is number of unique characters across all words.
 def minimumCharactersForWords(words):
     # use a hashmap of chars and frequencies.
     minChars = defaultdict(int)
     for word in words:
         wordChars = Counter(word)
         for char, count in wordChars.items():
-            if count > minChars[char]:
-                minChars[char] = count
+            minChars[char] = max(count, minChars[char])
 
     charArray = []
     for key, count in minChars.items():
