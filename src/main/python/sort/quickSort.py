@@ -50,25 +50,28 @@ def quickSort2(array):
 def qucikSortHelper(array, start, end):
     if start >= end:
         return
-    pivot = start
-    left = start + 1
-    right = end
-    while right >= left:
-        if array[left] > array[pivot] > array[right]:
-            array[left], array[right] = array[right], array[left]
-        if array[left] <= array[pivot]:
-            left += 1
-        if array[right] >= array[pivot]:
-            right -= 1
-    array[pivot], array[right] = array[right], array[pivot]
+    pivotIdx = start
+    # skip the first pivotIdx item
+    leftIdx = start + 1
+    rightIdx = end
+    while rightIdx >= leftIdx:
+        if array[leftIdx] > array[pivotIdx] > array[rightIdx]:
+            # swap if leftIdx is bigger than pivotIdx than rightIdx
+            array[leftIdx], array[rightIdx] = array[rightIdx], array[leftIdx]
+        if array[leftIdx] <= array[pivotIdx]:
+            leftIdx += 1
+        if array[rightIdx] >= array[pivotIdx]:
+            rightIdx -= 1
+    # change pivotIdx from last unsorted value on the rightIdx
+    array[pivotIdx], array[rightIdx] = array[rightIdx], array[pivotIdx]
 
-    leftSubarraySmaller = right - start < end - right
+    leftSubarraySmaller = rightIdx - start < end - rightIdx
     if leftSubarraySmaller:
-        qucikSortHelper(array, start, right - 1)
-        qucikSortHelper(array, right + 1, end)
+        qucikSortHelper(array, start, rightIdx - 1)
+        qucikSortHelper(array, rightIdx + 1, end)
     else:
-        qucikSortHelper(array, right + 1, end)
-        qucikSortHelper(array, start, right - 1)
+        qucikSortHelper(array, rightIdx + 1, end)
+        qucikSortHelper(array, start, rightIdx - 1)
 
 
 arr = [10, 7, 8, 9, 1, 5]
