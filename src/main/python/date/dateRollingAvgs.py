@@ -22,10 +22,11 @@ def rolling_sum(arr):
         value = t[1]
         if i == 0:
             window_beg_date, window_end_date = get_window_dates(date)
-        # trigger moving avg calculation and reset
+        # array is sorted by date. trigger moving avg calculation and reset
         if date >= window_end_date:
             moving_avgs.append(round(sum(window) / len(window), 2))
             prev_sum = cum_sum[-1] if len(cum_sum) > 0 else 0
+            # cumulative sum is continuous adding to previous sum
             cum_sum.append(prev_sum + sum(window))
             window = []
             window_beg_date = window_end_date
