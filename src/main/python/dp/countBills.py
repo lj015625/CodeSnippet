@@ -48,7 +48,7 @@ def countways_dp(amount, bills):
 
 
 # much more efficient dp
-# O(nd) time O(n) space
+# O(nd) time O(n) space  n is amount d is len of bills
 def numberOfWaysToMakeChange(amount, bills):
     if amount <= 0:
         return 0
