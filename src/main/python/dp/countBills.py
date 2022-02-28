@@ -27,20 +27,21 @@ def countways_dp(amount, bills):
     for amt in range(1, amount + 1):
         for j in range(len(bills)):
             bill = bills[j]
+            # default is 0 way when we cannot add this bill j
+            x = 0
+            # default is 0 ways when previous step is 0 way
+            y = 0
             # we can add this bill j because amt - bill >= 0
             if amt - bill >= 0:
                 # existing count for j and (amt - bill) is dp[amt - bill][j]
                 x = dp[amt - bill][j]
-            # we cannot add this bill j
-            else:
-                x = 0
+
             # count of amt previously without bill j
             if j >= 1:
                 # existing count for previous j-1 and amt is dp[amt][j-1]
                 y = dp[amt][j - 1]
-            else:
-                y = 0
-            # count is ways to count of (amt - bill) and count of (amt
+
+            # count is ways to count of (amt - bill) and count of (amt)
             dp[amt][j] = x + y
 
     # print(dp)
