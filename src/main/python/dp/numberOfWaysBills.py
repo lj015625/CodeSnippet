@@ -54,13 +54,14 @@ def numberOfWaysToMakeChange(amount, bills):
     if amount <= 0:
         return 0
     ways = [0 for _ in range(amount + 1)]
+    # min of 1
     ways[0] = 1
     # for each bill add to ways
     for bill in bills:
         # for each amount from 1 to amount
         for amt in range(1, amount + 1):
             # if we can add this bill then count of (amt) is added by count of (amt - bill)
-            if bill <= amt:
+            if amt - bill >= 0:
                 ways[amt] += ways[amt - bill]
     return ways[amount]
 

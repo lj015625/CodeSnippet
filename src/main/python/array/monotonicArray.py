@@ -10,7 +10,7 @@ def isMonotonic(array):
     trendIncreasing = None
     for i in range(1, len(array)):
         # check if trend is found
-        if trendIncreasing == None:
+        if trendIncreasing is None:
             if array[i] < array[i - 1]:
                 trendIncreasing = False
             elif array[i] > array[i - 1]:
@@ -25,14 +25,15 @@ def isMonotonic(array):
 
     return True
 
+
 # O(n) time O(1) space
 def isMonotonic2(array):
     isNonDecreasing = True
     isNonIncreasing = True
     for i in range(1, len(array)):
-        if array[i] < array[i-1]:
+        if array[i] < array[i - 1]:
             isNonDecreasing = False
-        if array[i] > array[i-1]:
+        if array[i] > array[i - 1]:
             isNonIncreasing = False
     # use or logic
     return isNonDecreasing or isNonIncreasing

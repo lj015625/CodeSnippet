@@ -1,6 +1,7 @@
 """Function to find out all combinations of positive numbers that add upto given number."""
-def findCombinationsUtil(results, temp, index, max, target):
 
+
+def findCombinationsUtil(results, temp, index, max, target):
     if target < 0:
         return
 
@@ -16,7 +17,6 @@ def findCombinationsUtil(results, temp, index, max, target):
 
     # note loop starts from previous number
     for k in range(prev, max + 1):
-
         # next element of array is k
         temp[index] = k
 
@@ -34,6 +34,8 @@ def findCombinations(n):
     # find all combinations
     findCombinationsUtil(results, arr, 0, n, n)
     print(results)
+
+
 # Driver code
 n = 5
 findCombinations(n)
