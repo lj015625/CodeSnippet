@@ -21,7 +21,7 @@ def longestSubstringWithoutDuplication(string):
         # add char to map
         seenChar[currChar] = currIdx
 
-    # check last run
+    # the last iteration
     if len(string) - startIdx > longest[1] - longest[0]:
         return string[startIdx:]
     elif longest[1] - longest[0]:
@@ -37,7 +37,7 @@ def longestSubstringWithoutDuplication2(string):
         # found repeating char
         if currChar in seenChar:
             startIdx = max(startIdx, seenChar[currChar] + 1)
-        # overwrite longest substring
+        # overwrite longest substring with string[startIdx:currIdx+1]
         if currIdx + 1 - startIdx > longest[1] - longest[0]:
             longest = [startIdx, currIdx + 1]
 
