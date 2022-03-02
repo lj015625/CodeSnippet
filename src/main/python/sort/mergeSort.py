@@ -1,42 +1,49 @@
-def mergeSort(myList):
-    if len(myList) > 1:
-        mid = len(myList) // 2
-        left = myList[:mid]
-        right = myList[mid:]
+# best O(nlog(n)) time O(nlog(n)) space
+# avg O(nlog(n)) time O(nlog(n)) space
+# worst O(nlog(n)) time O(nlog(n)) space
+def mergeSort(array):
+    if len(array) == 1:
+        return array
 
-        # Recursive call on each half
-        mergeSort(left)
-        mergeSort(right)
+    mid = len(array) // 2
+    left = array[:mid]
+    right = array[mid:]
 
-        # Two iterators for traversing the two halves
-        i = 0
-        j = 0
+    # Recursive call on each half
+    mergeSort(left)
+    mergeSort(right)
 
-        # Iterator for the main list
-        k = 0
+    # Two iterators for traversing the two halves
+    i = 0
+    j = 0
 
-        while i < len(left) and j < len(right):
-            if left[i] <= right[j]:
-                # The value from the left half has been used
-                myList[k] = left[i]
-                # Move the iterator forward
-                i += 1
-            else:
-                myList[k] = right[j]
-                j += 1
-            # Move to the next slot
-            k += 1
+    # Iterator for the main list
+    k = 0
 
-        # For all the remaining values
-        while i < len(left):
-            myList[k] = left[i]
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            # The value from the left half has been used
+            array[k] = left[i]
+            # Move the iterator forward
             i += 1
-            k += 1
-
-        while j < len(right):
-            myList[k] = right[j]
+        else:
+            array[k] = right[j]
             j += 1
-            k += 1
+        # Move to the next slot
+        k += 1
+
+    # For all the remaining values
+    while i < len(left):
+        array[k] = left[i]
+        i += 1
+        k += 1
+
+    while j < len(right):
+        array[k] = right[j]
+        j += 1
+        k += 1
+
+    return array
 
 
 myList = [54, 26, 93, 17, 77, 31, 44, 55, 20]
