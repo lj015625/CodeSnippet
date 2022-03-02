@@ -16,11 +16,14 @@ class LRUCache(object):
         :rtype: int
         """
         if key not in self.od:
-            return - 1
+            # return nothing
+            return
         # move this item to most fresh
         self.od.move_to_end(key)
         return self.od[key]
 
+    def getMostRecentKey(self):
+        return list(self.od.keys())[-1]
 
     def put(self, key, value):
         """
