@@ -36,7 +36,10 @@ def longestSubstringWithoutDuplication2(string):
     for currIdx, currChar in enumerate(string):
         # found repeating char
         if currChar in seenChar:
-            startIdx = max(startIdx, seenChar[currChar] + 1)
+            # find the next index of seen char after current startIdx
+            # startIdx = max(startIdx, seenChar[currChar] + 1)
+            if seenChar[currChar] + 1 > startIdx:
+                startIdx = seenChar[currChar] + 1
         # overwrite longest substring with string[startIdx:currIdx+1]
         if currIdx + 1 - startIdx > longest[1] - longest[0]:
             longest = [startIdx, currIdx + 1]
