@@ -6,8 +6,9 @@ Your goal is find maximum combined value of items without exceed capacity.
 """
 
 
+# O(nc) time O(c) space where n is number of item, c is capacity
 def knapsackProblem(items, capacity):
-    # bag of capacity [0, 1, 2...capacity + 1] for each items
+    # columns are [0, 1, 2...capacity + 1] capacity, rows are items
     knapsackValues = [[0 for x in range(capacity + 1)] for y in range(len(items) + 1)]
     # iterate over each items
     for i in range(1, len(items) + 1):
@@ -22,14 +23,18 @@ def knapsackProblem(items, capacity):
             else:
                 # max value from either replace with current item or not with current item
                 knapsackValues[i][c] = max(knapsackValues[i - 1][c], knapsackValues[i - 1][c - currentWeight] + currentValue)
+            # the final value of knapsackValues which is capacity
     return [knapsackValues[-1][-1], getKnapsackValues(knapsackValues, items)]
 
 
 def getKnapsackValues(knapsackValues, items):
     sequence = []
+    # start from the end and decrement
     i = len(knapsackValues) - 1
+    # capacity
     c = len(knapsackValues[0]) - 1
     while i > 0:
+        # current equal to previous row
         if knapsackValues[i][c] == knapsackValues[i - 1][c]:
             i -= 1
         else:
@@ -38,6 +43,7 @@ def getKnapsackValues(knapsackValues, items):
             i -= 1
         if c == 0:
             break
+    # return order in descending
     return list(reversed(sequence))
 
 
