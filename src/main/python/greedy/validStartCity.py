@@ -34,6 +34,7 @@ def validStartingCity2(distances, fuel, mpg):
     # start at first city with 0 miles
     lowestRemainingMiles = 0
     lowestRemainingMilesIdx = 0
+    # start at second city and calculate previous city fuel gained and distance find the most negative remainingMiles
     for currentCityIdx in range(1, numOfCities):
         # previous city fuel gained
         fuelGained = fuel[currentCityIdx - 1]
