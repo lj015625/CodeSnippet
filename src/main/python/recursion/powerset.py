@@ -22,7 +22,7 @@ def powerset_recursive(array, index=None):
     if index < 0:
         return [[]]
     num = array[index]
-    # powerset([1,2,3,4,...x]) = powerset([1,2,3,4,...x-1]) + [x]
+    # powerset([1,2,3,4,...x]) = powerset([1,2,3,4,...x-1]) + [x], therefore add [x] to each subsets
     subsets = powerset_recursive(array, index - 1)
     for i in range(len(subsets)):
         currentSubset = subsets[i]
