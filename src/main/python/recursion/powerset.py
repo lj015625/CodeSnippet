@@ -1,10 +1,10 @@
 """
 Given an array of numbers return all subsets.
-For example, [1,2]'s subset is [[], [1], [2, [1,2]].
+For example, [1,2]'s subset is [[], [1], [2], [1,2]].
 """
 
 
-# Iterative O(2^n *n) time O(2^ *n) space
+# Iterative O(2^n *n) time O(2^n *n) space
 def powerset(array):
     subsets = [[]]
     for num in array:
@@ -15,7 +15,7 @@ def powerset(array):
     return subsets
 
 
-# Recursive O(2^n *n) time O(2^ *n) space
+# Recursive O(2^n *n) time O(2^n *n) space
 def powerset_recursive(array, index=None):
     if index is None:
         index = len(array) - 1

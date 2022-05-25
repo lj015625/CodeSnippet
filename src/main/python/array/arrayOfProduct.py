@@ -10,10 +10,11 @@ from functools import reduce
 def arrayOfProducts(array):
     # multiply array element together except 0
     totalProduct = reduce(lambda x, y: x * y if x != 0 else 1, array)
+    # any zeros in the array
     numberOfZeros = sum(1 for n in array if n == 0)
     product = []
     for num in array:
-        # no zero in array
+        # no zero in array we can div total by num to get product of every other number
         if numberOfZeros == 0:
             product.append(totalProduct / num)
         # only one zero in array then products are all zeros except one position of 0
@@ -23,13 +24,36 @@ def arrayOfProducts(array):
             product.append(0)
     return product
 
-
 # O(n) time O(n) space
 def arrayOfProducts2(array):
+    leftProduct = [1 for _ in range(len(array))]
+    rightProduct = [1 for _ in range(len(array))]
+    product = [1 for _ in range(len(array))]
+
+    leftRunningProduct = 1
+    for i in range(len(array)):
+        # product of all elements on the left except current
+        leftProduct[i] = leftRunningProduct
+        leftRunningProduct *= array[i]
+
+    rightRunningProduct = 1
+    for i in range(len(array)-1, -1, -1):
+        # product of all elements on the right except current
+        rightProduct[i] = rightRunningProduct
+        rightRunningProduct *= array[i]
+
+    # total product is left * right
+    for i in range(len(array)):
+        product[i] = leftProduct[i] * rightProduct[i]
+
+    return product
+
+# O(n) time O(n) space
+def arrayOfProducts3(array):
     product = [1 for _ in range(len(array))]
     leftRunningProduct = 1
     for i in range(len(array)):
-        # product of all elements on the left
+        # product of all elements on the left except current
         product[i] = leftRunningProduct
         leftRunningProduct *= array[i]
 
@@ -37,9 +61,10 @@ def arrayOfProducts2(array):
     for i in range(len(array)-1, -1, -1):
         # product of left and right
         product[i] *= rightRunningProduct
-        # product of all elements on the right
+        # product of all elements on the right except current
         rightRunningProduct *= array[i]
 
+    # total product is left * right
     return product
 
 
