@@ -14,6 +14,7 @@ def mergeOverlappingIntervals(intervals):
         end = interval[1]
         # there is intersection
         if beg <= prev_end:
+            # current end might not be larger than prev_end
             prev_end = max(prev_end, end)
         # no intersection
         else:
