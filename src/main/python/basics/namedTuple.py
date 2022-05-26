@@ -28,5 +28,16 @@ def usePandas(n, colmnNames, data):
     df.set_index('ID', inplace=True)
     print('{:.2f}'.format(df['MARKS'].mean(axis=0)))
 
-useNamedTuple(5, "MARKS      CLASS      NAME       ID",  ["92         2          Calum      1", "82         5          Scott      2", "94         2          Jason      3", "55         8          Glenn      4", "82         2          Fergus     5"])
-usePandas(5, "MARKS      CLASS      NAME       ID",  ["92         2          Calum      1", "82         5          Scott      2", "94         2          Jason      3", "55         8          Glenn      4", "82         2          Fergus     5"])
+useNamedTuple(5, "MARKS      CLASS      NAME       ID",
+              ["92         2          Calum      1",
+               "82         5          Scott      2",
+               "94         2          Jason      3",
+               "55         8          Glenn      4",
+               "82         2          Fergus     5"])
+
+usePandas(5, "MARKS      CLASS      NAME       ID",
+          ["92         2          Calum      1",
+           "82         5          Scott      2",
+           "94         2          Jason      3",
+           "55         8          Glenn      4",
+           "82         2          Fergus     5"])
