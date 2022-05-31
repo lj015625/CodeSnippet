@@ -1,10 +1,35 @@
+"""
+A deque is a double-ended queue. It can be used to add or remove elements from both ends.
+Deques support thread safe, memory efficient appends and pops from either side of the deque with approximately the same
+performance in either direction.
+
+Sample Input:
+6
+append 1
+append 2
+append 3
+appendleft 4
+pop
+popleft
+
+Sample Output
+1, 2
+"""
 from collections import deque
 
-n = int(input())
-d = deque()
+n = 6
+cmds = ['append 1',
+'append 2',
+'append 3',
+'appendleft 4',
+'pop',
+'popleft',
+'extend 3']
 
+d = deque()
 for i in range(n):
-    cmd, *args = input().split()
+    cmd, *args = cmds[i].split()
+    # execute
     getattr(d, cmd)(*(int(x)for x in args))
 
 print(*[item for item in d])
