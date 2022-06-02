@@ -1,5 +1,6 @@
 """
 Return the smallest array of characters needed to form words.  Includes punctuations and/or special characters.
+For example, ["y", "r", "o", "u"] are needed to form the words["your", "you", "or", "yo"].
 """
 
 from collections import Counter, defaultdict
@@ -16,6 +17,7 @@ def minimumCharactersForWords(words):
 
     charArray = []
     for key, count in minChars.items():
+        # extend() added multiple items in the list while() append only add one item.
         charArray.extend([key] * count)
 
     return charArray

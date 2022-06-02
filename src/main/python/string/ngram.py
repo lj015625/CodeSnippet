@@ -4,6 +4,7 @@
 
 def get_ngrams(n, string):
     d = {}
+    # range end at index + 1
     for i in range(len(string) - n + 1):
         temp = string[i:i + n]
         if temp in d:
