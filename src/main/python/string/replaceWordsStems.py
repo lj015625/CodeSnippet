@@ -14,6 +14,7 @@ def replace_words(roots, sentence):
         out_list.append(w)
         for r in roots:
             if w.startswith(r):
+                # replace the last word with stem
                 out_list[-1] = r
     return ' '.join(out_list)
 
