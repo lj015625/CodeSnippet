@@ -1,3 +1,6 @@
+"""
+Remove extra parentheses in the string
+"""
 class Solution(object):
     def minRemoveToMakeValid(self, s):
         """
@@ -19,6 +22,7 @@ class Solution(object):
             s = ''.join([s[i] for i in range(len(s)) if i not in remove])
         # remove the last few (
         if balance > 0:
+            # count	Optional. A number specifying how many occurrences of the old value you want to replace. Default is all occurrences
             s = s[::-1].replace('(', '', balance)
             s = s[::-1]
         # remove the first few )
