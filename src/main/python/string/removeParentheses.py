@@ -8,7 +8,7 @@ class Solution(object):
         remove = []
         for i, c in enumerate(s):
             if c == '(':
-                count = balance + 1
+                balance = balance + 1
             elif c == ')':
                 if balance > 0:
                     balance = balance - 1
