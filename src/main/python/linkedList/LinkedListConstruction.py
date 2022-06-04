@@ -92,6 +92,8 @@ class DoublyLinkedList:
         while node is not None:
             nodeToRemove = node
             node = node.next
+            # we could remove multiple nodes with this value therefore keep remove inside the while loop
+            # and node = node.next before self.remove because remove changes the node.next pointer
             if nodeToRemove.value == value:
                 self.remove(nodeToRemove)
 
