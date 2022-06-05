@@ -4,24 +4,26 @@ class LinkedList:
         self.value = value
         self.next = None
 
+
 # Hint linked List is sorted O(n) time O(1) space
-def removeDuplicatesFromLinkedList(linkedList):
-    currentNode = linkedList
+def removeDuplicatesFromLinkedList(node):
+    currentNode = node
     while currentNode is not None:
-        # skip all duplicates
+        # starting at next node and find a duplicate then skip it
         temp = currentNode.next
         while temp is not None and temp.value == currentNode.value:
             temp = temp.next
-        # set pointer to new nextNode
+        # set pointer to found duplicate
         currentNode.next = temp
 
-        # iterate to next
+        # restart from duplicate
         currentNode = temp
 
-    return linkedList
+    return node
 
 
 import unittest
+
 
 class LinkedList(LinkedList):
     def addMany(self, values):
