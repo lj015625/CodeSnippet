@@ -1,7 +1,9 @@
 # O(N) time O(N) space
 def reverseWordsInString(string):
     reversedWords = []
+    # reverse the whole string
     for word in string[::-1].split(' '):
+        # re-reverse the word
         reversedWords.append(word[::-1])
     return " ".join(reversedWords)
 
@@ -18,17 +20,20 @@ def reverseWordsInString2(string):
 
     words = []
     startOfWord = 0
+    # break up string to words
     for idx in range(len(string)):
         char = string[idx]
         if char == " ":
             words.append(string[startOfWord:idx])
             # reset startOfWord to idx
             startOfWord = idx
+        # skip empty spaces
         elif string[startOfWord] == " ":
             words.append(" ")
-            # skip empty spaces
             startOfWord = idx
+    # one last iteration
     words.append(string[startOfWord:])
+    # reverse the words
     reverseList(words)
     return "".join(words)
 
