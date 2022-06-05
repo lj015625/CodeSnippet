@@ -11,7 +11,7 @@ def caesarCipherEncryptor(string, key):
 
 def caesarCipherEncryptor2(string, key):
     shifted = []
-    newKey = key % 26
+    newKey = key
     alphabet = list('abcdefghijklmnopqrstuvwxyz')
     for char in string:
         newLetterCode = (alphabet.index(char) + newKey) % 26
