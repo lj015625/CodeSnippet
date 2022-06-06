@@ -4,10 +4,11 @@ all combinations of adjacent integers of a given string of integers named int_st
 
 def int_str_addition(int_str):
     sum = 0
-    for i in range(len(int_str)):
-        for j in range(i + 1, len(int_str) + 1):
-            print(int_str[i:j])
-            sum += int(int_str[i:j])
+    for beg in range(len(int_str)):
+        # end index is last index +1 [beg:end]
+        for end in range(beg + 1, len(int_str) + 1):
+            print(int_str[beg:end])
+            sum += int(int_str[beg:end])
     return sum
 
 
@@ -18,3 +19,5 @@ class TestProgram(unittest.TestCase):
     def test_case_1(self):
         int_str = '12'
         self.assertEqual(15, int_str_addition(int_str))
+
+
