@@ -6,9 +6,10 @@ Given a string finding the longest length substring in the string.
 def longestSubstringWithoutDuplication(string):
     seenChar = {}
     startIdx = 0
+    # keep track of current longest substring's start and end.
     longest = [0, 1]
     for currIdx, currChar in enumerate(string):
-        # found repeating char
+        # found repeating char then we need to update longest
         if currChar in seenChar:
             # overwrite longest substring
             if currIdx - startIdx > longest[1] - longest[0]:
@@ -16,6 +17,7 @@ def longestSubstringWithoutDuplication(string):
 
             # reset start pointer at previous repeated char's next char
             startIdx = seenChar[currChar] + 1
+            # map of char and index, filter by startIdx
             seenChar = {k: v for k, v in seenChar.items() if v >= startIdx}
 
         # add char to map
@@ -32,9 +34,10 @@ def longestSubstringWithoutDuplication(string):
 def longestSubstringWithoutDuplication2(string):
     seenChar = {}
     startIdx = 0
+    # keep track of current longest substring's start and end.
     longest = [0, 1]
     for currIdx, currChar in enumerate(string):
-        # found repeating char
+        # found repeating char then we need to update longest
         if currChar in seenChar:
             # find the next index of seen char after current startIdx
             # startIdx = max(startIdx, seenChar[currChar] + 1)
