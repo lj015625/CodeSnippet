@@ -11,13 +11,13 @@ def string_map(string1, string2):
 
     # first check string1 does not have conflict match
     for char1, char2 in zip(string1, string2):
-        # assign char1
+        # add new mapping char1 -> char2
         if char1 not in char_map:
             char_map[char1] = char2
-        # match char 1 with char 2
+        # existing mapping char1 -> something else
         elif char_map[char1] != char2:
             return False
-    # next check string2 does not have conflict match
+    # also need to check char2 -> char1
     for char1, char2 in zip(string1, string2):
         # assign char2
         if char2 not in char_map:
