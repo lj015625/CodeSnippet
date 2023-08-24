@@ -6,7 +6,7 @@ class Solution(object):
     def even_odd (self, A):
         next_even, next_odd = 0, len(A) - 1
         while next_even < next_odd:
-            # if it is event then increment next_even pointer
+            # if it is even then increment next_even pointer
             if A[next_even] % 2 == 0:
                 next_even += 1
             # if it is odd swap next_odd with next_even then increment next_odd pointer
