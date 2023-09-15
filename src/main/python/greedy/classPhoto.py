@@ -5,8 +5,9 @@ All students in blue shirts must be in the same row.
 Each student in back row must be taller than the student directly in front.
 """
 
+
 # O(log(n)) time O(1) space
-def classPhotos(redShirtHeights, blueShirtHeights):
+def classPhotos(redShirtHeights: list[int], blueShirtHeights: list[int]):
     if len(redShirtHeights) != len(blueShirtHeights):
         return False
     # sort in reverse order then start with tallest pairing up one from each front row and back row.
@@ -32,7 +33,7 @@ import unittest
 
 class TestProgram(unittest.TestCase):
     def test_case_1(self):
-        blueShirtHeights = [5, 6, 7, 2, 3, 1, 2, 3]
+        blueShirtHeights = [5, 6, 7, 2, 3, 2, 2, 3]
         redShirtHeights = [1, 1, 1, 1, 1, 1, 1, 1]
         expected = True
         actual = classPhotos(redShirtHeights, blueShirtHeights)
