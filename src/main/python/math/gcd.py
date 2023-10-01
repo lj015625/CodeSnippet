@@ -2,19 +2,29 @@
 
 
 def compute_gcd(large, small):
-    while small:
+    while small > 0:
         reminder = large % small
-        large = small
-        small = reminder
+        large, small = small, reminder
     return large
 
 
 def gcd(numbers):
-    g = numbers[0]
-    for num in numbers[1:]:
-        g = compute_gcd(num, g)
-    return g
+    small = numbers[0]
+    for large in numbers[1:]:
+        small = compute_gcd(large, small)
+    return small
 
 
-int_list = [8, 16, 24]
-print(gcd(int_list))
+import unittest
+
+
+class TestProgram(unittest.TestCase):
+    def test_case_1(self):
+        self.assertEqual(1, gcd([5, 16, 24]))
+
+    def test_case_2(self):
+        self.assertEqual(8, gcd([8, 16, 24]))
+
+    def test_case_3(self):
+        self.assertEqual(2, gcd([2, 4, 8, 16, 32, 64]))
+

@@ -38,3 +38,11 @@ for j in range(m):
         print(" ".join(d[key]))
     else:
         print(-1)
+
+# count repeated colors
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d = defaultdict(list)
+for k, v in s:
+    d[k].append(v)
+
+print(sorted(d.items()))

@@ -29,6 +29,7 @@ cmds = ['append 1',
 d = deque()
 for i in range(n):
     cmd, *args = cmds[i].split()
+    print(args)
     # execute
     getattr(d, cmd)(*(int(x)for x in args))
 

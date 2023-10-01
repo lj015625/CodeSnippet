@@ -6,6 +6,5 @@ def fibonacci(n):
         yield a
         a, b = b, a+b
 
-if __name__ == '__main__':
-    n = int(input())
-    print(*list(map(cube, fibonacci(n))))
+n = 3
+print(*list(map(cube, fibonacci(n))))
