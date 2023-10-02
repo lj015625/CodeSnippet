@@ -10,6 +10,7 @@ while getting at least two books at the lowest weight.
 Note: you should spend all your credit and getting at least 2 books,
 If no such condition satisfied just return empty list."""
 
+
 def book_combinations(book_list, N):
     result_list = []
     min_weight = sum([book[0] for book in book_list])
@@ -25,13 +26,13 @@ def book_combinations(book_list, N):
             return
 
         # current book
-        recursive_traverse(index+1, remaining_credit,
+        recursive_traverse(index + 1, remaining_credit,
                            total_weight, choosen_books)
 
         # continuous search for next book
         # add new book_list[index]
-        recursive_traverse(index+1, remaining_credit - book_list[index][0],
-                           total_weight + book_list[index][1], choosen_books+[book_list[index]])
+        recursive_traverse(index + 1, remaining_credit - book_list[index][0],
+                           total_weight + book_list[index][1], choosen_books + [book_list[index]])
 
     # call inner function first time
     recursive_traverse(0, N, 0, [])
@@ -39,5 +40,5 @@ def book_combinations(book_list, N):
 
 
 N = 18
-books = [(17,8), (9,4), (18,5), (11,9), (1,2), (13,7), (7,5), (3,6), (10,8)]
+books = [(17, 8), (9, 4), (18, 5), (11, 9), (1, 2), (13, 7), (7, 5), (3, 6), (10, 8)]
 print(book_combinations(books, N))
