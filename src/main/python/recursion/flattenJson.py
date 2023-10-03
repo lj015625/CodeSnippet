@@ -5,6 +5,7 @@ Do not use the library that actually performs this function.
 
 import json
 
+
 def flatten_json(d):
     result_dict = {}
     for key, value in d.items():
@@ -14,10 +15,11 @@ def flatten_json(d):
             for inner_key, inner_value in inner_dict.items():
                 # append parent key with inner key
                 result_dict[key + '_' + inner_key] = inner_value
-        elif not isinstance(input, dict):
+        elif not isinstance(value, dict):
             result_dict[key] = value
 
     return result_dict
+
 
 # depth first search use a stack
 def flatten_json2(input):
@@ -29,10 +31,12 @@ def flatten_json2(input):
             curr_path.append(key)
             dfs(input[key], curr_path)
             curr_path.pop()
+
     output = {}
     dfs(input, [])
     return output
 
+
 json_str = {'a': {'b': 'c', 'd': {'e': 'f'}}}
-json_str = json.dumps(flatten_json2(json_str))
-print(json_str)
+print(json.dumps(flatten_json(json_str)))
+print(json.dumps(flatten_json2(json_str)))
