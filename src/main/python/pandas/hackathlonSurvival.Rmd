@@ -1,0 +1,124 @@
+---
+title: "Hackathlon Survival Analysis"
+output:
+  html_document:
+    df_print: paged
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
+
+```{r}
+library(survival)
+library(survminer)
+library(caret)
+library(survival)
+library(ggplot2)
+library(dplyr)
+library(ggfortify)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+data <- read.csv(file = 'data/Hackathon Challenge 2 Data Set.csv')
+head(data)
+cols = colnames(data)
+
+```
+
+```{r}
+data['attrition'] = 1 - data['RETAINED']
+head(data)
+
+```
+
+One Hot encoding
+
+```{r}
+
+dummy <- dummyVars(" ~ .", data=data)
+newdata <- data.frame(predict(dummy, newdata = data)) 
+head(newdata)
+newCols <- colnames(newdata)
+```
+
+```{r}
+km_fit <- survfit(Surv(Length.of.Service, attrition) ~ 1, data=newdata)
+summary(km_fit, times = c(1,2,3,5*(1:10)))
+#plot(km_fit, xlab="Years", main = 'Kaplan Meyer Plot') #base graphics is always ready
+autoplot(km_fit)
+
+```
+
+```{r}
+# Uni-variate Cox regression
+retain.cox1 <- coxph(Surv(Length.of.Service, attrition) ~ INTERVENTION, data=data)
+retain.cox1
+```
+
+```{r}
+
+oneHotcols <- newCols[which(!newCols %in% cols)]
+paste(oneHotcols, collapse = " + ")
+```
+
+```{r}
+# Multi-variate Survival
+retain.cox2 <- coxph(Surv(Length.of.Service, RETAINED) ~ INTERVENTION + Ratio.Category + Category.1 + Last.Change.Category + Time.In.Role.Category + 
+                       Org.UnitBusiness_01 + Org.UnitBusiness_02 + Org.UnitBusiness_03 + Org.UnitBusiness_04 + Org.UnitBusiness_05 + Org.UnitClient_01 + Org.UnitClient_02 + Org.UnitClient_03 + Org.UnitEnabling_01 + Org.UnitEnabling_02 + Org.UnitEnabling_03 + Org.UnitSupport_01 + Org.UnitSupport_02 + Org.UnitTechnical_01 + Org.UnitTechnical_02 + Org.UnitTechnical_03 + OrganizationAnalytics_01 + OrganizationClient_01 + OrganizationClient_02 + OrganizationConsulting_01 + OrganizationConsulting_02 + OrganizationConsulting_03 + OrganizationDevelopment_01 + OrganizationDevelopment_02 + OrganizationDevelopment_03 + OrganizationDevelopment_04 + OrganizationDevelopment_05 + OrganizationDevelopment_06 + OrganizationDevelopment_07 + OrganizationDevelopment_08 + OrganizationDevelopment_09 + OrganizationDevelopment_10 + OrganizationDevelopment_11 + OrganizationDevelopment_12 + OrganizationDevelopment_13 + OrganizationEnabling_01 + OrganizationEnabling_02 + OrganizationEnabling_03 + OrganizationEnabling_04 + OrganizationHealthcare_01 + OrganizationHealthcare_02 + OrganizationHealthcare_03 + OrganizationHealthcare_04 + OrganizationHealthcare_05 + OrganizationInternational_01 + OrganizationIT_01 + OrganizationIT_02 + OrganizationIT_03 + OrganizationIT_04 + OrganizationIT_05 + OrganizationIT_06 + OrganizationIT_07 + OrganizationIT_08 + OrganizationOperations_01 + OrganizationOperations_02 + OrganizationOther + OrganizationProduct_01 + OrganizationProduct_02 + OrganizationProduct_03 + OrganizationProduct_04 + OrganizationProfessional.Services_01 + OrganizationProfessional.Services_05 + OrganizationSales_01 + OrganizationSales_02 + OrganizationSales_03 + OrganizationSupport_01 + OrganizationSupport_02 + OrganizationSupport_03 + OrganizationSupport_04 + OrganizationSupport_05 + Job.Family.GroupBusiness.Development...Sales + Job.Family.GroupClient.Relationships + Job.Family.GroupConsulting.Services + Job.Family.GroupCorporate.Administration...Facilities + Job.Family.GroupData.Analytics...Business.Intelligence + Job.Family.GroupDevelopment + Job.Family.GroupFinance + Job.Family.GroupGeneral.Business.Management + Job.Family.GroupHealth...Care.Services + Job.Family.GroupHuman.Resources + Job.Family.GroupInformation.Technology + Job.Family.GroupLegal..Compliance...Audit + Job.Family.GroupMarketing..Communications...Corporate.Affairs + Job.Family.GroupProduct.Management...Planning + Job.Family.GroupProject...Program.Management + Job.Family.GroupSupport.Services...Operations + Direct.Reports.CategoryHigh + Direct.Reports.CategoryLow + Direct.Reports.CategoryMedium + Direct.Reports.CategoryNone + Direct.Reports.CategoryVery.High + Span.of.Control.CategoryHigh + Span.of.Control.CategoryHigher + Span.of.Control.CategoryLow + Span.of.Control.CategoryMedium + Span.of.Control.CategoryNone + Location.1Location_01 + Location.1Location_02 + Location.1Location_03 + Location.1Location_04 + Location.1Location_05 + Location.1Location_06 + Work.CountryCountry_01 + Work.CountryCountry_02 + Work.CountryCountry_03 + Work.CountryCountry_04 + Work.CountryCountry_05 + Work.CountryCountry_06 + Work.CountryCountry_07 + Work.CountryCountry_08 + Work.CountryOther, data=newdata)
+summary(retain.cox2)
+
+
+```
+
+```{r}
+retain.cox3 <- coxph(Surv(Length.of.Service, attrition) ~  INTERVENTION + Ratio.Category +  Time.In.Role.Category , data=newdata)
+summary(retain.cox3)
+
+
+```
+
+```{r}
+autoplot(survfit(retain.cox2, data=newdata))
+#plot(survfit(retain.cox2, data=newdata))
+ggsurvplot(survfit(retain.cox3, data=newdata), palette = "#2E9FDF", ggtheme = theme_minimal())
+```
+
+```{r}
+
+
+new_df <- with(newdata,
+                 data.frame(
+
+                   INTERVENTION = c(0, 1),
+                   Ratio.Category = rep(mean(Ratio.Category, na.rm = TRUE), 2),
+                   Time.In.Role.Category = rep(mean(Time.In.Role.Category, na.rm = TRUE), 2)
+                   
+                 )
+               )
+new_df
+
+
+
+
+fit <- survfit(retain.cox3, newdata = new_df)
+
+
+
+ggsurvplot(fit, data = new_df, conf.int = TRUE, legend.labs=c("INTERVENTION=0", "INTERVENTION=1"),
+           ggtheme = theme_minimal())
+
+```
+
+```{r}
+aa_fit <-aareg(Surv(Length.of.Service, RETAINED) ~ INTERVENTION+  Ratio.Category + 
+                      Time.In.Role.Category, data=newdata)
+
+autoplot(aa_fit)
+```
